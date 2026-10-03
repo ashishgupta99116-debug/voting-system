@@ -1,6 +1,6 @@
 const mongoose = require("mongoose") ;
 
-const candidate = new mongoose.Schema({
+const candidateSchema = new mongoose.Schema({
   name : {
     type : String ,
     required : true
@@ -26,9 +26,11 @@ const candidate = new mongoose.Schema({
       }
     }
   ],
-  votCount : {
+  voteCount : {
     type : Number ,
     default : 0
   }
 });
 
+const candidate = mongoose.model('Candidate' , candidateSchema)
+module.exports =  candidate ;
