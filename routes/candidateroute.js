@@ -7,18 +7,15 @@ const {jwtAuthMiddleware , generatetoken} = require('./../jwt') ;
 const candidate = require('./../model/candidate');
 
 const CheckAdminRole = async (userID) => {
-    try{
-        const user = await User.findById(userID) ;
-       if(user.role === 'admin') {
-        return true ;
-       }else {
+    try {
+        const user = await User.findById(userID);
+
+        return !!user && user.role === 'admin';
+
+    } catch(err) {
         return false;
-       }
     }
-    catch(err){
-        return false ;
-    }
-}
+};
 
  // POST route to add candidates
 router.post('/' , jwtAuthMiddleware, async (req , res) =>{
@@ -68,7 +65,7 @@ router.put('/:candidateID' ,jwtAuthMiddleware,  async (req, res)=>{
         }
 
         console.log("Candidate data updated") ;
-        return res.status(500).json(response) ;
+        return res.status(200).json(response) ;
     }catch(err){
         console.error(err) ;
         return res.status(500).json({error : 'INTERNAL SERVER ERROR'}) ;
@@ -90,7 +87,7 @@ router.delete('/:candidateID' ,jwtAuthMiddleware,  async (req, res)=>{
         }
 
         console.log("Candidate data deleted") ;
-        return res.status(500).json(response) ;
+        return res.status(200).json(response) ;
     }catch(err){
         console.error(err) ;
         return res.status(500).json({error : 'INTERNAL SERVER ERROR'}) ;
@@ -115,7 +112,7 @@ router.post('/vote/:candidateID' , jwtAuthMiddleware , async(req, res) =>{
 
 
         if(!candidate){
-            return res.status(404).jsong({message : "candidate not found"}) ;
+            return res.status(404).json({message : "candidate not found"}) ;
         }
 
         const user = await User.findById(userID) ;
