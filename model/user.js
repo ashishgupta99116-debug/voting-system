@@ -76,6 +76,16 @@ userSchema.methods.comparePassword = async function(candidatepassword){
     }
 }
 
+// Allow only one admin in the entire database
+userSchema.index(
+  { role: 1 },
+  {
+    unique: true,
+    partialFilterExpression: { role: "admin" }
+  }
+);
+
+
 
 const User = mongoose.model("User" , userSchema) ;
 

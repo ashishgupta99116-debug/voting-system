@@ -7,10 +7,15 @@ const User = require('./../model/user') ;
 router.post('/signup' , async (req , res) =>{
 
     try{
-        const data = req.body // assuming the request body contain the person data 
-
-        // create a new User document using the mongoose model
-        const newUser = new User(data) ;
+        const newUser = new User({
+            name: req.body.name,
+            age: req.body.age,
+            email: req.body.email,
+            mobilenumber: req.body.mobilenumber,
+            address: req.body.address,
+            aadhaarcardnumber: req.body.aadhaarcardnumber,
+            password: req.body.password
+        });
 
         // save the new User data to the database
         const response = await newUser.save() ;
@@ -23,7 +28,15 @@ router.post('/signup' , async (req , res) =>{
         console.log(payload);
         const token = generatetoken(payload) ;
         console.log("Token id : " , token) ;
-        res.status(200).json({response : response , token : token}) ;
+        res.status(201).json({
+            message: "Signup successful",
+            user: {
+                id: response._id,
+                name: response.name,
+                role: response.role
+            },
+            token: token
+        });
     }
     catch(err){
         console.log(err) ;
