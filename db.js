@@ -1,5 +1,9 @@
 const mongoose = require("mongoose") ;
 const express = require("express") ;
+const dns = require("dns");
+
+// Use alternate DNS servers
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const dotenv = require('dotenv').config() ;
 
