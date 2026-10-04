@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteSphere - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .admin-container {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .admin-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .admin-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .admin-form {
+            display: grid;
+            gap: 12px;
+            max-width: 500px;
+        }
+
+        .admin-form input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .admin-form button,
+        .candidate-actions button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .admin-form button {
+            background: #2457d6;
+            color: white;
+        }
+
+        .candidate-admin-card {
+            border: 1px solid #ddd;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .candidate-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .edit-btn {
+            background: #e8a928;
+            color: black;
+        }
+
+        .delete-btn {
+            background: #d93636;
+            color: white;
+        }
+
+        .admin-message {
+            margin-top: 10px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body class="dashboard-body">
+
+    <nav class="navbar">
+        <div class="nav-logo">VoteSphere Admin</div>
+
+        <div class="nav-links">
+            <span id="adminName">Admin</span>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <main class="admin-container">
+
+        <section class="admin-section">
+            <h2>Welcome, Admin!</h2>
+            <p>Manage candidates and monitor election results.</p>
+            <p id="accessMessage" class="admin-message"></p>
+        </section>
+
+        <section class="admin-section">
+            <h2>Add Candidate</h2>
+
+            <form id="candidateForm" class="admin-form">
+
+                <input
+                    type="text"
+                    id="candidateName"
+                    placeholder="Candidate Name"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="candidateParty"
+                    placeholder="Party Name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="candidateAge"
+                    placeholder="Candidate Age"
+                    min="18"
+                    required
+                >
+
+                <button type="submit" id="submitBtn">
+                    Add Candidate
+                </button>
+
+            </form>
+
+            <p id="formMessage" class="admin-message"></p>
+        </section>
+
+        <section class="admin-section">
+            <h2>Manage Candidates</h2>
+            <div id="candidateList">Loading candidates...</div>
+        </section>
+
+        <section class="admin-section">
+            <h2>Election Results</h2>
+            <div id="resultsList">Loading results...</div>
+        </section>
+
+    </main>
+
+    <script src="js/admin.js"></script>
+
+</body>
+</html>

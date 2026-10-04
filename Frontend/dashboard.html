@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteSphere | Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="dashboard-body">
+
+    <nav class="navbar">
+        <div class="nav-logo">VoteSphere</div>
+
+        <div class="nav-links">
+            <span id="navUserName">Welcome!</span>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <div>
+                <h1>Welcome, <span id="userName">Voter</span>!</h1>
+                <p>Explore the candidates and make your voice count.</p>
+            </div>
+
+            <div class="status-card">
+                <p>Your Voting Status</p>
+                <h3 id="votingStatus">Checking...</h3>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <h2>Your Profile</h2>
+
+            <div class="profile-grid">
+                <div>
+                    <span>Name</span>
+                    <strong id="profileName">Loading...</strong>
+                </div>
+
+                <div>
+                    <span>Age</span>
+                    <strong id="profileAge">Loading...</strong>
+                </div>
+
+                <div>
+                    <span>Email</span>
+                    <strong id="profileEmail">Loading...</strong>
+                </div>
+
+                <div>
+                    <span>Mobile Number</span>
+                    <strong id="profileMobile">Loading...</strong>
+                </div>
+
+                <div>
+                    <span>Address</span>
+                    <strong id="profileAddress">Loading...</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="candidates-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Election Candidates</h2>
+                    <p>Review the candidates before casting your vote.</p>
+                </div>
+            </div>
+
+            <p id="candidateMessage">Loading candidates...</p>
+
+            <div id="candidateList" class="candidate-grid"></div>
+        </section>
+
+        <section class="results-section">
+            <h2>Election Results</h2>
+            <p>See the current vote count for each candidate.</p>
+
+            <div id="resultsList"></div>
+        </section>
+
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
