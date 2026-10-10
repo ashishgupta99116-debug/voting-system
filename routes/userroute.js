@@ -2,11 +2,32 @@ const express = require('express') ;
 const router= express.Router() ;
 
 const User = require('./../model/user') ;
- const {jwtAuthMiddleware , generatetoken} = require('./../jwt') ;
+const {jwtAuthMiddleware , generatetoken} = require('./../jwt') ;
+const Candidate = require('./../model/candidate');
 
 router.post('/signup' , async (req , res) =>{
 
     try{
+        // New Validate age 
+        const submittedAge = Number(req.body.age);
+
+        if (!Number.isInteger(submittedAge) || submittedAge < 18) {
+            return res.status(400).json({
+                message: "You must be at least 18 years old."
+            });
+        }
+
+        // New Validate mobile  number
+        const submittedMobile = req.body.mobilenumber;
+
+        if (
+            typeof submittedMobile !== "string" ||
+            !/^[0-9]{10}$/.test(submittedMobile)
+        ) {
+            return res.status(400).json({
+                message: "Mobile number must contain exactly 10 digits."
+            });
+        }
         const newUser = new User({
             name: req.body.name,
             age: req.body.age,

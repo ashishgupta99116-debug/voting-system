@@ -8,14 +8,16 @@ const userSchema = new mongoose.Schema({
     },
     age : {
         type : Number , 
-        required : true 
+        required : true ,
+        min : [18 , "Age must be at least 18 years"]
     },
     email :{
         type : String 
     },
-    mobilenumber :{
-        type : String ,
-        required : true 
+    mobilenumber: {
+        type: String,
+        required: true,
+        match: [/^[0-9]{10}$/, "Mobile number must contain exactly 10 digits"]
     },
     address : {
         type : String ,
